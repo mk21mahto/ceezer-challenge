@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import filterOptions from '@/utils/filterOptions';
+import { AdvanceFilter, FilterOptionsProps } from '@/utils/types';
 
-type AdvanceFilter = {
-    suppliers: string[];
-    countries: string[];
-  }
-
-const FilterOptions = ({ applyFilters }) => {
+const FilterOptions: React.FC<FilterOptionsProps> = ({ applyFilters }) => {
   const [advanceFilter, setAdvanceFilter] = useState<AdvanceFilter>({
     suppliers: [],
     countries: []
   });
 
-  const getFilteredData = (e, value, category) => {
+  const getFilteredData = (e: React.ChangeEvent<HTMLInputElement>, value: string, category: string) => {
     const { checked } = e.target;
 
     if (category === "Supplier") {
@@ -38,7 +34,7 @@ const FilterOptions = ({ applyFilters }) => {
         filterOptions.map((option) => {
           return (
             <div key={option.title}>
-              <div>{option.title}</div>
+              <div className='font-bold mb-1'>{option.title}</div>
               {
                 option.options.map((box, index) => {
                   return (
@@ -55,7 +51,7 @@ const FilterOptions = ({ applyFilters }) => {
           )
         })
       }
-      <button onClick={handleApplyFilters}>Apply</button>
+      <button onClick={handleApplyFilters} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Apply</button>
     </div>
   );
 };

@@ -1,22 +1,22 @@
 'use client'
+import { AppContextType } from "@/utils/types";
 import { createContext, useContext, useState } from "react";
 
-const AppContext = createContext<any>({
-    data : []
-})
+const AppContext = createContext<AppContextType>({
+    cartItem: [],
+    setCartItem: () => {}
+});
 
-export function AppWrapper({ children } : {
-    children: React.ReactNode
-}) {
-    let [cartItem, setCartItem] = useState([])
+export function AppWrapper({ children }: { children: React.ReactNode }) {
+    const [cartItem, setCartItem] = useState<any[]>([]);
 
     return (
-        <AppContext.Provider value={{cartItem, setCartItem}}>
+        <AppContext.Provider value={{ cartItem, setCartItem }}>
             {children}
         </AppContext.Provider>
-    )
+    );
 }
 
 export function useAppContext() {
-    return useContext(AppContext)
+    return useContext(AppContext);
 }

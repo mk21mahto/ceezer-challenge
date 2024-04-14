@@ -6,9 +6,9 @@ import FilterOptions from './FilterOptions';
 
 const Marketplace = () => {
   const [searchedProduct, setSearchedProduct] = useState('');
-  const [item, setItems] = useState(data);
+  const [productList, setProductList] = useState(data);
 
-  const applyFilters = (filters) => {
+  const applyFilters = (filters: { suppliers: string[]; countries: string[] }) => {
     let filteredData = [...data];
 
     if (filters.suppliers.length > 0) {
@@ -23,7 +23,7 @@ const Marketplace = () => {
       filteredData = filteredData.filter(product => product.name.toLowerCase().includes(searchedProduct.toLowerCase()));
     }
 
-    setItems(filteredData);
+    setProductList(filteredData);
   };
 
   return (
@@ -33,15 +33,18 @@ const Marketplace = () => {
           <div className='search'>
             <input type="text" placeholder="Search a product" value={searchedProduct} className='border border-gray-200' onChange={(e) => { setSearchedProduct(e.target.value) }}></input>
           </div>
-          <FilterOptions applyFilters={applyFilters} />
+          <FilterOptions applyFilters={applyFilters} filterOptions={[]} />
         </div>
-        <div className='flex flex-wrap'>
-          {
-            item.map((product) => {
-              return (
-                <ProductCard key={product.id} data={product} />)
-            })
-          }
+        <div>
+          <div className='font-bold mb-2'>Projects</div>
+          <div className='flex flex-wrap'>
+            {
+              productList.map((product) => {
+                return (
+                  <ProductCard key={product.id} product={product} />)
+              })
+            }
+          </div>
         </div>
       </div>
     </div>
