@@ -20,9 +20,19 @@ Visualize the products added in the cart, show total amount, delivery date, upda
 
 OR
 
-access via (codesandbox.io)[https://codesandbox.io/p/github/mk21mahto/stock-dashboard/main?embed=1&file=%2Fsrc%2FApp.js]
+access via (codesandbox.io)[https://codesandbox.io/p/github/mk21mahto/ceezer-challenge/draft/frosty-tdd]
 
-## Tech
-1. Framework - NextJS
-2. CSS - Tailwind
-3. Testing - Jest
+## Folder Structure
+    .src
+    |--- .cart              #cart page
+    |--- .context           #useContext to handle common data across the application
+    |--- .components        #common place for all the components
+    |--- .utils             #dummyData, types, constants
+
+## If I had more time
+1. Add more advance filtering and search feature
+2. Make UX look more user friendly
+3. Display SDGs (I didn't understand what are SDGs are in the dummy json data, SDGs was an array [1,2,3]. If it means, showing multiple images with clickable information. In this case I would have added a modal, which triggers when you click on the project in the main marketplace page)
+4. Add form validation for quantity input
+5. Show error message if anything apart from number is entered in the quantity input
+6. Handle loading states, create loading skeletons
